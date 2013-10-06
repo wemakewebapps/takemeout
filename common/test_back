@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Take me out</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="css/default.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" type="text/css" href="css/custom.css">
+    <link href="css/bootstrap-responsive.css" rel="stylesheet" media="screen">
+    <link href="css/bootstrap-responsive.min.css" rel="stylesheet" media="screen"> 
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+  </head>
+  <body>
+    <header>
+    </header>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/content.js"></script>
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <!--Screen 1 begins-->
+
+
+    <div class="loading">
+      <img src="img/ajax_loader.gif"/>
+    </div>
+
+    <div id="toggle"></div>
+   
+
+    <div class ="container screen1">
+      <div class ="muted main"><h2>
+          <font size="75">
+          Take me out!
+        </font>
+        </h2></div>
+      <div class ="startpage">
+        <button class="btn btn-large btn-primary somewhere" type="submit">Take Me Somewhere!</button>
+        <button class="btn btn-large btn-primary surprise"  type="submit">Surprise ME!</button>
+      </div>
+    </div>
+
+    <script>
+$( ".somewhere" ).click(function() {
+  $(".screen1").hide();
+  $( ".screen2" ).show( "bounce", { times: 3, distance: 30 }, "slow" );
+});
+$( ".surprise" ).click(function() {
+  $(".screen1").hide();
+  $( ".screen3" ).show( "bounce", { times: 3, distance: 30 }, "slow" );
+});
+</script>
+
+    <div class="target">
+   </div>
+
+    <!--Scren 1 ends-->
+
+    <!--Screen 2 begins-->
+
+    <div class = "container screen2">
+      <div class ="muted main2"><h2>
+          <font size="75">
+          Take me out!
+        </font>
+        </h2></div>
+      <form>
+        <div class ="distance">
+        <input type ="text" placeholder ="distance">
+      </div>
+      <div class ="price">
+        <input type ="text" placeholder="price">
+      </div>
+      <div class ="keyword">
+        <input type ="search" placeholder="keyword">
+      </div>
+        <button class="btn btn-large btn-primary go" type="submit">Let's Go!</button>
+      </form>
+    </div>
+
+    <!--Screen 2 ends-->
+
+    <!--Screen 3 begins -->
+
+    <div class= "container screen3">
+      <div class="blackscreen">
+
+      </div>
+      <div class="container part1">
+        <div class="mapholder"> <img src="img/map.png"/></div>
+      </div>
+      <div class="container part2">
+       <div class="event evt-title">Title  </div>
+       <div class="event evt-description">Description  </div>
+      </div>
+      <div class="container part3">
+        <button class ="btn-success btn btn-large" type="submit">Take me Somewhere Else!</button>
+        <button class ="btn-success btn btn-large" type-"submit">Get Tickets</button>
+      </div>
+
+    </div>
+
+
+
+    <!--Screen 3 ends-->
+
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+.title{
+  position: relative;
+}
+
+body{
+  background-image:url(../img/tumblr_static_let--s-party-1280-800-6774.jpg);
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  overflow: hidden;
+}
+
+.screen1{
+position:relative;
+height: 600px;
+border-radius: 15px;
+}
+
+.main{
+  position: relative;
+  left: 75%;
+  top: 10%;
+  opacity: 0.7;
+  color: black;
+}
+
+
+.main2{
+  position: relative;
+  left: 75%;
+  top: 10%;
+  opacity: 0.7;
+  color: black;
+}
+
+.main3{
+  position: relative;
+  left: 75%;
+  top: 10%;
+  opacity: 0.7;
+  color: black;
+}
+
+.somewhere{
+  position: relative;
+  left: 30%;
+  top: 30%;
+}
+
+.surprise{
+  position: relative;
+  left: 35%;
+  top: 30%;
+}
+
+
+
+.distance{
+  position: absolute;
+  top: 25%;
+  left: 40%;
+}
+
+.price{
+  position: absolute;
+  top: 30%;
+  left: 40%;
+  font-size: 250px;
+}
+
+.go{
+  position: absolute;
+  top: 50%;
+  left: 43%;
+}
+
+.keyword{
+  position: absolute;
+  top: 40%;
+  left: 40%;
+}
+
+.screen2{
+position:relative;
+height: 600px;
+background-size:100% 600px;
+border-radius: 15px;
+background-repeat:no-repeat;
+}
+
+.mapholder{
+  background-color: black;
+  position: absolute;
+  top: 5%;
+  left: 28%;
+  height: 50px;
+  width: 400px;
+}
+
+.evt-title{
+  position: absolute;
+  top: 57%;
+  left: 48%;
+  height: 50px;
+  width: 400px;
+  color: white;
+}
+
+
+.evt-description{
+  position: absolute;
+  top: 67%;
+  left: 47%;
+  height: 50px;
+  width: 400px;
+  color: white;
+}
+
+.blackscreen{
+  width: 500px;
+  height: 500px;
+  position: absolute;
+  top: 10px;
+  left: 28%;
+  opacity: 0.5;
+  border-radius: 15px;
+  background-color: black;
+}
+
+.part3{
+  position: absolute;
+  left: 28%;
+  top: 85%;
+}
+
+.screen3{
+border-radius: 15px;
+position:relative;
+height: 600px;
+background-size:100% 600px;
+background-repeat:no-repeat;
+}

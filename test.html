@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Take me out</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="css/default.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" type="text/css" href="css/custom.css">
+    <link href="css/bootstrap-responsive.css" rel="stylesheet" media="screen">
+    <link href="css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+  </head>
+  <body>
+    <header>
+      <div class ="muted main"><h2>Take me out!</h2></div>
+    </header>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/content.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <!--Screen 1 begins-->
+
+
+   
+
+    <div class ="container screen1"> 
+      <img src="../img/love_party_wallpaper_hd.jpg" />
+      
+        <button class="btn btn-large btn-primary somewhere" type="submit">Take Me Somewhere!</button>
+        <button class="btn btn-large btn-primary surprise"  type="submit">Surprise ME!</button>
+    </div>
+
+    <!--Scren 1 ends-->
+
+
+    <script>
+$( ".somewhere" ).click(function() {
+  $(".screen1").hide();
+  $( ".screen2" ).show( "bounce", { times: 3, distance: 30 }, "slow" );
+});
+$( ".surprise" ).click(function() {
+  $(".screen1").hide();
+  $( ".screen3" ).show( "bounce", { times: 3, distance: 30 }, "slow" );
+});
+</script>
+
+    <!--Screen 2 begins-->
+
+    <div class = "container screen2">
+ 
+      <form>
+        <div class ="distance">
+        <input type ="text" placeholder ="distance">
+      </div>
+      <div class ="price">
+        <input type ="text" placeholder="price">
+      </div>
+      <div class ="keyword">
+        <input type ="search" placeholder="keyword">
+      </div>
+        <button class="btn btn-large btn-primary go" type="submit">Let's Go!</button>
+      </form>
+    </div>
+
+    <!--Screen 2 ends-->
+
+    <!--Screen 3 begins -->
+
+    <div class= "container screen3">
+      
+      <div id="blackscreen">
+      <div class="transparency">
+      </div>
+
+      <div class="container part1">
+        <div class="mapholder"> 
+         <!--<img src="img/map.png"/>-->
+         <div id="map-canvas" ></div>
+        </div>
+      </div>
+       <div class="details"> </div>
+
+      <div class="container part3">
+        <button class ="btn-success btn btn-large" type="submit" onclick = event>Take me Somewhere Else!</button>
+        <button class ="btn-success btn btn-large" type-"submit">Get Tickets</button>
+      </div>
+      </div>
+    </div>
+
+
+
+    <!--Screen 3 ends-->
+
+  </body>
+</html>

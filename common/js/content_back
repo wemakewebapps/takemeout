@@ -1,0 +1,52 @@
+var curScreen;
+
+
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+
+function setScreen(curScreen){
+	if (true) {};
+}
+
+function switchScreen2(){
+	//$(".container").removeClass(".screen1 .screen2 .screen3").addClass("screen3");
+
+  $(".screen1").hide();
+  $( ".screen3" ).show( "bounce", { times: 1 }, "slow" );
+}
+
+function switchScreen1(){
+  $(".screen1").hide();
+  $( ".screen2" ).show( "bounce", { times: 1 }, "slow" );
+}
+
+function switchScreen3(){
+	$(".screen2").fadeOut("slow");
+	$(".loading").show();
+    $(".screen3").effect( "bounce", 
+      {times:3}, 300 );
+}
+
+
+function clickevents() {
+	$(".surprise").on("click", function(){
+		switchScreen2();
+		console.log("blah");
+	});
+
+	$(".somewhere").on("click", function(){
+		switchScreen1();
+	});
+
+	$(".go").on("click", function(){
+		switchScreen3();
+	});
+
+}
+
+$(document).on("ready", function(){
+	console.log("blah");
+	clickevents();
+
+});
