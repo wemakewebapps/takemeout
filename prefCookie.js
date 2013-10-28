@@ -13,7 +13,7 @@ createCookie(): Creates cookie based on input from readDoc()
 readCookie will be the first to be called. It runs when a button
 with id 'next' is clicked. If readCookie does not find a cookie, 
 or the cookie is empty, it calls createCookie(readDoc()) and then
-reads outputs that cookie.
+returns that cookie.
 
 createCookie() requires an argument that is a list of categories.
 This will be given by readDoc()
