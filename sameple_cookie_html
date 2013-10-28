@@ -1,0 +1,23 @@
+<html>
+	<head>
+	<title> Cookie tester </title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="../jquery-cookie/jquery.cookie.js"></script>
+	<script src="prefCookie.js"></script>
+	</head>
+
+	<body>
+	<form>
+	Baseball<input type="checkbox" value="baseball" name="baseball">
+	Basketball<input type="checkbox" value="basketball">
+	Hockey<input type="checkbox" value="hockey">
+	Football<input type="checkbox" value="football">
+	Soccer<input type="checkbox" value="soccer">
+	</form>
+	<button id="next">Next</button>
+	<p id="cookieReader"></p>
+	<script>
+
+	</script>
+	</body>
+</html>
