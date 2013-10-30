@@ -11,7 +11,7 @@ none is found. Returns a list
 createCookie(): Creates cookie based on input from readDoc()
 checkTheBoxes(): Reads the content of the cookie, then checks
 the checkboxes for the categories the user has previously
-spcified
+spcified. Unchecks all boxes if the cookie is deleted.
 
 readCookie will be the first to be called. It runs when a button
 with id 'next' is clicked, and then returns the cookie "prefs".
@@ -38,7 +38,8 @@ $(document).ready(function()
 	{
 		var lst = $('input:checked'); 				//Return all currently selected elements
 		var retLst = [];
-		for(var i = 0; i < lst.length; i++);
+
+		for(var i = 0; i < lst.length; i++)
 		{
 			retLst[i] = lst[i].value;					//Get the values from the form
 		}
@@ -55,12 +56,8 @@ $(document).ready(function()
 		//Check if input is different than current cookie
 		if(readDoc() != $.cookie("prefs"))
 		{
-			if(readDoc().length == 0)
-			{									//Do nothing if document contains no info
-				$.cookie("prefs");
-			}
-			else
-			{
+			if(readDoc().length !== 0)			//Do nothing if document contains no info
+			{									
 				console.log("Cookie changed");
 				$.removeCookie("prefs");		//Delete original cookie
 				createCookie(readDoc());		//Create new cookie
@@ -82,13 +79,20 @@ $(document).ready(function()
 		var checkboxes = $('input');
 		var from_cookie = readCookie();
 
-		for(var i = 0; i < checkboxes.length; i++);
+		if(from_cookie.type === undefined){
+			for(var i = 0; i < checkboxes.length; i++){
+				checkboxes[i].checked = false;
+			}
+			return;
+		}
+
+		for(var i = 0; i < checkboxes.length; i++)
 		{
-			if (!checkboxes[i].checked);							//If any given input is not checked
+			if (!checkboxes[i].checked)							//If any given input is not checked
 			{
-				for(var j = 0; j < from_cookie.length; j++);		
+				for(var j = 0; j < from_cookie.length; j++)	
 				{
-					if(checkboxes[i].value === from_cookie[j]);		//compare it to all elements in the cookie.
+					if(checkboxes[i].value === from_cookie[j])		//compare it to all elements in the cookie.
 					{
 						checkboxes[i].checked = "checked"; 			//Set input to checked if there is a match
 					}
@@ -98,13 +102,22 @@ $(document).ready(function()
 	}
 
 	//Click eventlistener
+	//For 'next' button
 	$("#next").click(function()
 	{
-	readCookie();
-	console.log($.cookie("prefs"));
+		readCookie();
+		console.log($.cookie("prefs"));
+	});
+
+	//For 'delete' button
+	$('#del').click(function()
+	{
+		$.removeCookie("prefs");
+		checkTheBoxes();
 	});
 
 	//Check the checkboxes of pre-existing preferences
 	checkTheBoxes();
+
 	
 })
