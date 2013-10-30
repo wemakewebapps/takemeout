@@ -14,9 +14,14 @@ the checkboxes for the categories the user has previously
 spcified
 
 readCookie will be the first to be called. It runs when a button
-with id 'next' is clicked. If readCookie does not find a cookie, 
-or the cookie is empty, it calls createCookie(readDoc()) and then
-reads outputs that cookie.
+with id 'next' is clicked, and then returns the cookie "prefs".
+If readCookie does not find a cookie, or the cookie is empty, 
+it calls createCookie(readDoc()) and then outputs that cookie. 
+readCookie also checks if the input from readDoc for the site 
+is different from the  stored cookie. If it is, then the cookie
+is changed to be the new input from readDoc(). If readDoc() is 
+different, but empty, then the function will do nothing and 
+return the stored cookie as normal.
 
 createCookie() requires an argument that is a list of categories.
 This will be given by readDoc()
@@ -79,13 +84,13 @@ $(document).ready(function()
 
 		for(var i = 0; i < checkboxes.length; i++);
 		{
-			if (!checkboxes[i].checked);
-			{														//If any given input is not checked
-				for(var j = 0; j < from_cookie.length; j++);
-				{													//compare it to all elements in the cookie.
-					if(checkboxes[i].value === from_cookie[j]);
-					{												//Set input to checked if there is a match
-						checkboxes[i].checked = "checked";
+			if (!checkboxes[i].checked);							//If any given input is not checked
+			{
+				for(var j = 0; j < from_cookie.length; j++);		
+				{
+					if(checkboxes[i].value === from_cookie[j]);		//compare it to all elements in the cookie.
+					{
+						checkboxes[i].checked = "checked"; 			//Set input to checked if there is a match
 					}
 				}
 			}
