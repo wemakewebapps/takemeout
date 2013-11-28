@@ -82,7 +82,8 @@ $(document).ready(function(){
 		$.cookie("prefs", list);
 		console.log("cookie is now " + $.cookie("prefs"));
 	});
-
+	
+	//For del button, removes cookie.
 	$("#del").click(function(){
 		list = '';
 		delCookie();
