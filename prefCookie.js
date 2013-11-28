@@ -27,6 +27,16 @@ $(document).ready(function(){
 	delCookie = function(){
 		$.removeCookie("prefs");
 	}
+	
+	/*Declare list variable. This is used for
+	cookie creation. Initialized as empty
+	if prefs does not already exist.*/
+	if($.cookie('prefs') !== undefined){
+		var list = readCookie();
+	}
+	else{
+		var list = []
+	}
 
 	highlightPrefs = function(){
 		var prefs = list;
@@ -42,13 +52,6 @@ $(document).ready(function(){
 				}
 			}
 		}
-	}
-
-	if($.cookie('prefs') !== undefined){
-		var list = readCookie();
-	}
-	else{
-		var list = []
 	}
 
 
