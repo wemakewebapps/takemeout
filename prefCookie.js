@@ -1,123 +1,93 @@
 /*
-This script will run the first time a user runs the site or app.
-It will read their selection of preferred categories, then pass
-them to a jQuery function that creates a cookie. 
+Was looking for a bug, found a much clearer way to write the code.
+It now relies on eventlisteners primarily. Cookies are created or
+updated when button with id 'next' is clicked. Will not work unless
+jQuery is imported in the document.
 
-The script contains the following functions:
+The script now works with paragraphs instead of checkboxes. This will
+make it prettier. The element type can be changed though. Currently
+it will bold the categories that have been saved in the cookie or that
+are clicked. I was thinking maybe we'd rather want to do this with
+a background color change or something, so I've made the code relatively
+easy to alter. It's just some css changing after all.
+Working copy up at kinectuofthack.com/TMO/htmlParagraph.html
 
-readDoc(): Reads the HTML for selections made by the user.
-readCookie(): Reads pre-existing cookies, calls createCookie if
-none is found. Returns a list
-createCookie(): Creates cookie based on input from readDoc()
-checkTheBoxes(): Reads the content of the cookie, then checks
-the checkboxes for the categories the user has previously
-spcified. Unchecks all boxes if the cookie is deleted.
-
-readCookie will be the first to be called. It runs when a button
-with id 'next' is clicked, and then returns the cookie "prefs".
-If readCookie does not find a cookie, or the cookie is empty, 
-it calls createCookie(readDoc()) and then outputs that cookie. 
-readCookie also checks if the input from readDoc for the site 
-is different from the  stored cookie. If it is, then the cookie
-is changed to be the new input from readDoc(). If readDoc() is 
-different, but empty, then the function will do nothing and 
-return the stored cookie as normal.
-
-createCookie() requires an argument that is a list of categories.
-This will be given by readDoc()
-
-checkTheBoxes should require no other call than the one made at
-the bottom of this script.
-
+"id" is either checked or unchecked.
+"title" contains the category name.
+"category" is the classnames of the paragraphs.
 */
 
+Classes that need to be in CSS:
 
-$(document).ready(function()
-{
-	readDoc = function()
-	{
-		var lst = $('input:checked'); 				//Return all currently selected elements
-		var retLst = [];
-
-		for(var i = 0; i < lst.length; i++)
-		{
-			retLst[i] = lst[i].value;					//Get the values from the form
-		}
-			return retLst;
+$(document).ready(function(){
+	readCookie = function(){
+		return $.cookie("prefs").split(',');
 	}
 
-	createCookie = function(content)
-	{
-		$.cookie("prefs", content);
+	delCookie = function(){
+		$.removeCookie("prefs");
 	}
 
-	readCookie = function()
-	{
-		//Check if input is different than current cookie
-		if(readDoc() != $.cookie("prefs"))
-		{
-			if(readDoc().length !== 0)			//Do nothing if document contains no info
-			{									
-				console.log("Cookie changed");
-				$.removeCookie("prefs");		//Delete original cookie
-				createCookie(readDoc());		//Create new cookie
-			}
-		}
-
-		//Create new cookie if empty or non-existant
-		if($.cookie("prefs") === undefined)
-		{
-			createCookie(readDoc());
-			console.log("Cookie 'prefs' not found, created new cookie");
-		}
-		//Return cookie as list
-		return $.cookie("prefs").split(",");
-	}
-
-	checkTheBoxes = function()
-	{
-		var checkboxes = $('input');
-		var from_cookie = readCookie();
-
-		if(from_cookie.type === undefined){
-			for(var i = 0; i < checkboxes.length; i++){
-				checkboxes[i].checked = false;
-			}
-			return;
-		}
-
-		for(var i = 0; i < checkboxes.length; i++)
-		{
-			if (!checkboxes[i].checked)							//If any given input is not checked
-			{
-				for(var j = 0; j < from_cookie.length; j++)	
-				{
-					if(checkboxes[i].value === from_cookie[j])		//compare it to all elements in the cookie.
-					{
-						checkboxes[i].checked = "checked"; 			//Set input to checked if there is a match
-					}
+	highlightPrefs = function(){
+		var prefs = list;
+		var doc = $('.category');
+		for(var i = 0; i < prefs.length; i++){
+			for(var j = 0; j < doc.length; j++){
+				if(prefs[i] === doc[j].title){
+					doc[j].id = "checked";
+				}
+				else{
+					console.log(doc[j] + "removed");
+					doc[j].id = "unchecked";
 				}
 			}
 		}
 	}
 
-	//Click eventlistener
-	//For 'next' button
+	if($.cookie('prefs') !== undefined){
+		var list = readCookie();
+	}
+	else{
+		var list = []
+	}
+
+
+
+	//Click listener for p
+	$(".category").click(function()
+	{
+		if(this.id === "unchecked")
+		{
+			this.id = "checked";	//For CSS
+			list.push(this.title); 	//The actual category name is stored as title
+			console.log(this.title + " appended to list"); //For debug
+		}
+		else
+		{
+			this.id = "unchecked";	//For CSS
+
+			//Remove from list
+			var removalIndex = list.indexOf(this.title);	//Only counts first occurance
+			if(removalIndex !== -1){
+				list.splice(removalIndex, 1);	
+			}
+
+			console.log("no element appended"); //For debug
+		}
+	});
+
+	//Click listener for 'next' button, creates cookie from list
 	$("#next").click(function()
 	{
-		readCookie();
-		console.log($.cookie("prefs"));
+		$.cookie("prefs", list);
+		console.log("cookie is now " + $.cookie("prefs"));
 	});
 
-	//For 'delete' button
-	$('#del').click(function()
-	{
-		$.removeCookie("prefs");
-		checkTheBoxes();
-	});
+	$("#del").click(function(){
+		list = '';
+		delCookie();
+		highlightPrefs();
+	})
+	highlightPrefs();
 
-	//Check the checkboxes of pre-existing preferences
-	checkTheBoxes();
-
-	
-})
+});
