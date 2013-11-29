@@ -15,9 +15,30 @@ Working copy up at kinectuofthack.com/TMO/htmlParagraph.html
 "id" is either checked or unchecked.
 "title" contains the category name.
 "category" is the classnames of the paragraphs.
-*/
+
 
 Classes that need to be in CSS:
+
+#accordion{
+	width: 30em;
+}
+#accordion h3{
+	background-color: #B3C0C9;
+	font-size: 1em;
+	font-family: Arial;
+}
+#accordion div{
+	line-height: 2em;
+	font-family: Helvetica;
+}
+.unchecked{
+	font-weight: default;
+}
+.checked{
+	font-weight: bold;
+}
+
+*/
 
 $(document).ready(function(){
 	readCookie = function(){
