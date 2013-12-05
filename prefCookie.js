@@ -2,7 +2,7 @@
 Was looking for a bug, found a much clearer way to write the code.
 It now relies on eventlisteners primarily. Cookies are created or
 updated when button with id 'next' is clicked. Will not work unless
-jQuery is imported in the document.
+jQuery and jQueryCookie is imported in the document.
 
 The script now works with paragraphs instead of checkboxes. This will
 make it prettier. The element type can be changed though. Currently
